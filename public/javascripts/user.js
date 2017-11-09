@@ -2,7 +2,7 @@ $(function() {
 const currentURL = window.location.origin;
 let clientId = '7650c457e77cfe731cb1';
 let clientSecret = 'd110bc6c2898235d0c86d7a996c9cd273bb19f97';
-let redirectUri = 'https://localhost:3000/new';
+let redirectUri = 'http://localhost:3000/new';
 let usersLocalStorage = JSON.parse(localStorage.getItem('User'));
 console.log(usersLocalStorage);
 
