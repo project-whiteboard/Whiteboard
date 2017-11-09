@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Header</title>
+
+    <!-- Bootstrap 4 Beta CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel='stylesheet' href='../../../public/stylesheets/style.css'>
+
+</head>
+
+<body>
+
+    <section id="login-header">
+            <div class="row">
+
+                <div class="hero-left">
+                    <div class="hero-basic">
+                        <h1>Student</h1>
+                    </div>
+                    <!-- /.hero-basic -->
+                    <div class="hero-expanded">
+                        <h1>Expanded</h1>
+                    </div>
+                    <!-- /.hero-expanded -->
+                </div>
+                <!-- /.hero-left -->
+
+                <div class="hero-right">
+                    <div class="hero-basic">
+                        <h1>Instructor</h1>
+                    </div>
+                    <!-- /.hero-basic -->
+                    <div class="hero-expanded">
+                        <h1>Expanded</h1>
+                    </div>
+                    <!-- /.hero-expanded -->
+                </div>
+                <!-- /.hero-right -->
+
+            </div>
+        <!-- /.row-->
+    </section>
+    <!-- /#login-header -->
+
+
+    <!-- jQuery 3.1.1  -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap Ajax  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS  -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+    <!-- Custom JS  -->
+    <script src='../../../public/javascripts/scripts.js'></script>
+
+    <script>
+        $('.hero-right').mouseenter(function () {
+            $('.hero-left').css('width', '25%');
+        })
+        $('.hero-right').mouseleave(function () {
+            $('.hero-left').css('width', '');
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+
+<script> 
+
+  const currentURL = window.location.origin;
+  let authCode = getAuthCode(window.location.href);
+  let clientId = '51ec5a185abed21675e6';
+  let clientSecret = '38e3b69bbddbd7d9bc89d44935615578f96ff4cd';
+
+  function getAuthCode(url){
+    var error = url.match(/[&\?]error=([^&]+)/);
+    if (error) {
+        throw 'Error getting authorization code: ' + error[1];
+    }
+    return url.match(/[&\?]code=([\w\/\-]+)/)[1];
+  }
+  console.log(authCode);
+
+  $.post('https://github.com/login/oauth/access_token?&client_id=' + clientId + '&client_secret=' + clientSecret + '&code=' + authCode, function(data) {
+    localStorage.setItem("accessToken", data);
+    $.get('https://api.github.com/user?' + data, function(res, err) {
+      let user = res;
+      $.post('/api/users', user, function(data) {
+        window.location.href = currentURL + '/user/' + data.user_login;
+      });
+    });
+  });
+
+
+
+</script>

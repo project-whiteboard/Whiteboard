@@ -1,0 +1,508 @@
+<div class="container">
+  <div class="row">
+    {{!-- User Profile --}}
+    <div id="userInfo" class="order-lg-1 text-center active">
+
+      <a id="slide" aria-expanded="true" aria-controls="userInfo"></a>
+
+      <div class="col-lg-12">
+        <a href="/user/{{user.user_login}}">
+          <img id="userAvatar" src=" {{user.user_avatar}} " class="rounded-circle" alt="">
+        </a>
+        <h5 id="userName" class="mb-3"> {{user.user_name}} </h5>
+      </div>
+
+      <div class="list-group panel">
+
+        <a href="#menu1" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
+          <i class="fa fa-dashboard"></i>
+          <span class="hidden-sm-down">About</span>
+        </a>
+        <div id="menu1" class="collapse">
+          <li class="list-group-item" data-parent="#menu2">
+            <p> {{user.user_desc}} </p>
+          </li>
+        </div>
+
+        <a href="#menu2" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
+          <i class="fa fa-dashboard"></i>
+          <span class="hidden-sm-down">Contact</span>
+        </a>
+        <div id="menu2" class="collapse">
+          <li class="list-group-item" data-parent="#menu2">
+            <p> {{user.user_email}} </p>
+          </li>
+          <li class="list-group-item" data-parent="#menu2">
+            <p> {{user.user_phone}} </p>
+          </li>
+        </div>
+      </div>
+    </div>
+    {{!-- /#userInfo --}}
+
+    <div class="col-lg-9 panes order-lg-2">
+      {{!-- Course Info --}}
+      <div>
+        <a class="courseID" data-id="{{CourseId}}">
+          <h1 id="login-title"> {{course_name}} </h1>
+        </a>
+      </div>
+
+      {{!-- Session Card --}}
+      <div class="card-columns w-100">
+
+        {{#if instructor}}
+        {{#each sessions}}
+        <div id="{{id}}" class="card sessionCard text-white" style="width: 20rem;" data-toggle="modal" data-target="#session{{id}}">
+
+          <div class="card-header {{session_subject}}">
+
+                          <h4 class="card-title"> {{session_name}} </h4>
+
+                                    <small class="card-subtitle mb-2 text-muted">Date: {{session_date}} </small>
+
+{{subject}}
+                        </div>
+
+          <div class="card-block">
+            <p class="card-text"> {{session_desc}} </p>
+          </div>
+
+          <div class="card-footer">
+            <small class="text-muted">Comments ({{Comments.length}}) </small>
+            <small class="text-muted">Resources ({{Resources.length}}) </small>
+            <small class="text-muted">Rating ({{session_rating}}) </small>
+          </div>
+        </div>
+        {{!-- /#sessionID --}}
+
+        <div id="session{{id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="{{id}}" aria-hidden="true" data-backdrop="static">
+
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-white">
+
+                {{#if session_name}}
+                <div class='col-md-6'>
+                  <p class="modal-subtitle text-muted">{{session_date}} | {{course_time}} </p>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                {{/if}}
+              </div>
+
+
+              <div class="modal-body text-dark">
+                <div class="container-fluid">
+
+                  <div class="row">
+                    <div class="col-md-12">
+
+                      {{#if session_desc}}
+                      <p> {{session_desc}} </p>
+                      {{/if}}
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h6>
+                        Activities
+                      </h6>
+                      <div class="form-group">
+                        <textarea class="form-control form-control-sm" rows="1" id="activity{{id}}"></textarea>
+                        <button type="submit" class="btn btn-info btn-sm activityAddSubmit">Add</button>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <form>
+                        <div class="form-group">
+                          <label for="resourceText">
+                            <h6>Resources</h6>
+                          </label>
+                          <input type="text" class="form-control form-control-sm" id="resourceTitle{{id}}" placeholder="Resource Title">
+                          <input type="text" class="form-control form-control-sm" id="resourceUrl{{id}}" placeholder="Resource URL">
+                          <input type="text" class="form-control form-control-sm" id="resourceDesc{{id}}" placeholder="Resource Description">
+                        </div>
+                        <button type="submit" id="{{id}}" class="resourceSubmit" class="btn btn-info btm-sm">Submit</button>
+                      </form>
+                    </div>
+                  </div>
+                  <hr>
+                  <br>
+
+                  {{#if Resources}}
+                  <h4> Instructor Resources </h4>
+                  {{#each Resources}} {{#if instructor}}
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <button id="{{id}}" data-session-id="{{SessionId}}" class="starResource" id="bookmark">
+                        <i class="fa fa-bookmark fa-2x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div class="col-md-11">
+                      <ul>
+                        <li>
+                          <a href="{{resource_url}}" target="_blank">{{resource_title}}</a>
+                          <div>{{resource_desc}}</div>
+                          <div>Posted by: {{user_login}} at {{createdAt}}</div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  {{/if}}
+                  {{/each}}
+
+                  <h4> Student Resources </h4>
+                  {{#each Resources}}
+                  {{#unless instructor}}
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <button id="{{id}}" data-session-id="{{SessionId}}" class="starResource" id="bookmark">
+                        <i class="fa fa-bookmark fa-2x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div class="col-md-11">
+                      <ul>
+                        <li>
+                          <a href="{{resource_url}}" target="_blank">{{resource_title}}</a>
+                          <div>{{resource_desc}}</div>
+                          <div>Posted by: {{user_login}} at {{createdAt}}</div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  {{/unless}}
+                  {{/each}}
+                  {{/if}}
+                  <br>
+
+                  <div class="row">
+                    {{#unless Ratings}}
+                    <form>
+                      <div class="form-group">
+                        <label for="resourceText">Rate this session</label>
+                        <div class="form-check form-check-inline">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="ratings" id="inlineRadio1" value="1"> 1
+                          </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="ratings" id="inlineRadio2" value="2"> 2
+                          </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="ratings" id="inlineRadio3" value="3"> 3
+                          </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="ratings" id="inlineRadio4" value="4"> 4
+                          </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="ratings" id="inlineRadio5" value="5"> 5
+                          </label>
+                        </div>
+                        <button type="submit" id="{{id}}" class="ratingSubmit btn btn-info btn-sm">Submit</button>
+                      </div>
+                    </form>
+                    {{/unless}}
+                    {{#if Ratings}}
+                    <p> You rated this session a {{session_rating}}.
+                    {{/if}}
+                  </div>
+                  <div class='row'>
+                    <div class='col-md-12'>
+                      <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Comment..</label>
+                        <textarea class="form-control" id="commentText{{id}}" rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class='row'>
+                    <div class='col-md-3'>
+                      <button type="button" class="btn btn-info btn-sm commentSubmit" data-session-id="{{id}}">Comment</button>
+                    </div>
+                  </div>
+
+                  {{#each Comments}}
+                  <div class="row commentRow">
+                    <table>
+                      <tr>
+                        <td>
+                          <img src={{user_avatar}} class="commentImg" />
+                          <span class="comment">{{comment_text}} </span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="commenterName">By: {{user_login}} Posted at: {{createdAt}}</span>
+                        </td>
+                      </tr>
+                    </table>
+                </div>
+                {{/each}}
+
+              </div>
+              </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+
+            </div>
+            {{!-- /.modal-content --}}
+          </div>
+          {{!-- /.modal-dialog --}}
+        </div>
+        {{!-- /#session{{id}} --}}
+        {{/each}}
+        {{/if}}
+
+        {{!--Instructor View --}}
+         {{#unless instructor}}
+        {{#each sessions}}
+        <div id="{{id}}" class="card sessionCard text-white" style="width: 20rem;" data-toggle="modal" data-target="#session{{id}}">
+
+          <div class="card-header {{session_subject}}">
+
+                          <h4 class="card-title"> {{session_name}} </h4>
+
+                                    <small class="card-subtitle mb-2 text-muted">Date: {{session_date}} </small>
+
+{{subject}}
+                        </div>
+
+          <div class="card-block">
+            <p class="card-text"> {{session_desc}} </p>
+          </div>
+
+          <div class="card-footer">
+            <small class="text-muted">Comments ({{Comments.length}}) </small>
+            <small class="text-muted">Resources ({{Resources.length}}) </small>
+            <small class="text-muted">Rating ({{session_rating}}) </small>
+          </div>
+        </div>
+        {{!-- /#sessionID --}}
+
+        <div id="session{{id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="{{id}}" aria-hidden="true" data-backdrop="static">
+
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-white">
+                {{#unless session_name}}
+                <div class='col-md-6'>
+                  <input class="form-control" type="text" placeholder="Session Title" id="sessionTitle{{id}}">
+                </div>
+                {{/unless}}
+
+                {{#if session_name}}
+                <div class='col-md-6'>
+                    <h4 class="modal-title"> {{session_name}} </h4>
+
+                    <small class="modal-subtitle mb-2 text-muted">Date: {{session_date}} </small>
+
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                {{/if}}
+              </div>
+
+
+              <div class="modal-body text-dark">
+                <div class="container-fluid">
+
+                  <div class="row">
+                    <div class="col-md-12">
+                                            <h6>
+                        Session Description
+                      </h6>
+                      {{#unless session_desc}}
+                      <div class="form-group">
+                        <textarea class="form-control" rows="3" placeholder="Session Description" id="sessionDesc{{id}}"></textarea>
+                        <button type="submit" id="{{id}}" class="btn btn-info btn-sm sessionDescSubmit">Add</button>
+                      </div>
+                      {{/unless}}
+
+                      {{#if session_desc}}
+                      <p> {{session_desc}} </p>
+                      {{/if}}
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h6>
+                        Activities
+                      </h6>
+                      <div class="form-group">
+                        <textarea class="form-control form-control-sm" rows="1" id="activity{{id}}"></textarea>
+                        <button type="submit" class="btn btn-info btn-sm activityAddSubmit">Add</button>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <form>
+                        <div class="form-group">
+                          <label for="resourceText">
+                            <h6>Resources</h6>
+                          </label>
+                          <input type="text" class="form-control form-control-sm" id="resourceTitle{{id}}" placeholder="Resource Title">
+                          <input type="text" class="form-control form-control-sm" id="resourceUrl{{id}}" placeholder="Resource URL">
+                          <input type="text" class="form-control form-control-sm" id="resourceDesc{{id}}" placeholder="Resource Description">
+                        </div>
+                        <button type="submit" id="{{id}}" class="resourceSubmit" class="btn btn-info btm-sm">Submit</button>
+                      </form>
+                    </div>
+                  </div>
+                  <hr>
+                  <br>
+
+                  {{#if Resources}}
+                  <h4> Instructor Resources </h4>
+                  {{#each Resources}} {{#if instructor}}
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <button id="{{id}}" data-session-id="{{SessionId}}" class="starResource" id="bookmark">
+                        <i class="fa fa-bookmark fa-2x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div class="col-md-11">
+                      <ul>
+                        <li>
+                          <a href="{{resource_url}}" target="_blank">{{resource_title}}</a>
+                          <div>{{resource_desc}}</div>
+                          <div>Posted by: {{user_login}} at {{createdAt}}</div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  {{/if}}
+                  {{/each}}
+                  <div class="row">
+                    {{#unless Ratings}}
+                    <form>
+                      <div class="form-group">
+                        <label for="resourceText">Rate this session</label>
+                        <div class="form-check form-check-inline">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="ratings" id="inlineRadio1" value="1"> 1
+                          </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="ratings" id="inlineRadio2" value="2"> 2
+                          </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="ratings" id="inlineRadio3" value="3"> 3
+                          </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="ratings" id="inlineRadio4" value="4"> 4
+                          </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="ratings" id="inlineRadio5" value="5"> 5
+                          </label>
+                        </div>
+                        <button type="submit" id="{{id}}" class="ratingSubmit btn btn-info btn-sm">Submit</button>
+                      </div>
+                    </form>
+                    {{/unless}}
+                    {{#if Ratings}}
+                    <p> You rated this session a {{session_rating}}.
+                    {{/if}}
+                  </div>
+                  <h4> Student Resources </h4>
+                  {{#each Resources}}
+                  {{#unless instructor}}
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <button id="{{id}}" data-session-id="{{SessionId}}" class="starResource" id="bookmark">
+                        <i class="fa fa-bookmark fa-2x" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                    <div class="col-md-11">
+                      <ul>
+                        <li>
+                          <a href="{{resource_url}}" target="_blank">{{resource_title}}</a>
+                          <div>{{resource_desc}}</div>
+                          <div>Posted by: {{user_login}} at {{createdAt}}</div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  {{/unless}}
+                  {{/each}}
+                  {{/if}}
+                  <br>
+
+                  <div class='row'>
+                    <div class='col-md-12'>
+                      <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Comment..</label>
+                        <textarea class="form-control" id="commentText{{id}}" rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class='row'>
+                    <div class='col-md-3'>
+                      <button type="button" class="btn btn-info btn-sm commentSubmit" data-session-id="{{id}}">Comment</button>
+                    </div>
+                  </div>
+
+                  {{#each Comments}}
+                  <div class="row commentRow">
+                    <table>
+                      <tr>
+                        <td>
+                          <img src={{user_avatar}} class="commentImg" />
+                          <span class="comment">{{comment_text}} </span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="commenterName">By: {{user_login}} Posted at: {{createdAt}}</span>
+                        </td>
+                      </tr>
+                    </table>
+                </div>
+                {{/each}}
+
+              </div>
+              </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+
+            </div>
+            {{!-- /.modal-content --}}
+          </div>
+          {{!-- /.modal-dialog --}}
+        </div>
+        {{!-- /#session{{id}} --}}
+        {{/each}}
+        {{/unless}}
+
+      </div>
+      {{!-- /.card-columns --}}
+    </div>
+    {{!-- /.col-lg-9 --}}
+  </div>
+  {{!-- /.row --}}
+</div>
+{{!-- /.container --}}

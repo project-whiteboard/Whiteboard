@@ -1,0 +1,216 @@
+{{#unless instructor}}
+<div class="container">
+    <div class="row">
+
+        {{!-- Main Pane --}}
+        <div id="userInfo" class="order-lg-1 text-center active">
+
+            <a id="slide" aria-expanded="true" aria-controls="userInfo"></a>
+
+            <div class="col-lg-12">
+                <img id="userAvatar" src=" {{user.user_avatar}} " class="rounded-circle" alt="">
+                <h5 id="userName" class="mb-3"> {{user.user_name}} </h5>
+            </div>
+
+            <div class="list-group panel">
+
+                <a href="#menu1" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
+                    <i class="fa fa-dashboard"></i>
+                    <span class="hidden-sm-down">About</span>
+                </a>
+
+                <div id="menu1" class="collapse">
+                    <li class="list-group-item" data-parent="#menu2">
+                        <p> {{user.user_desc}} </p>
+                    </li>
+                </div>
+
+                <a href="#menu2" class="list-group-item collapsed" data-toggle="collapse" data-parent="#userInfo" aria-expanded="false">
+                    <i class="fa fa-dashboard"></i>
+                    <span class="hidden-sm-down">Contact</span>
+                </a>
+                <div id="menu2" class="collapse">
+                    <li class="list-group-item" data-parent="#menu2">
+                        <p> {{user.user_email}} </p>
+                    </li>
+                    <li class="list-group-item" data-parent="#menu2">
+                        <p> {{user.user_phone}} </p>
+                    </li>
+                </div>
+            </div>
+        </div>
+        {{!-- /#userInfo --}}
+
+        <div class="col-lg-9 panes order-lg-2">
+            {{!-- Pane tabs --}}
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/user/" data-target="#courses" data-toggle="tab" class="nav-link">Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/user/" data-target="#edit" data-toggle="tab" class="nav-link">New Course</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/user/" data-target="#allCourses" data-toggle="tab" class="nav-link">All Courses</a>
+                </li>
+            </ul>
+
+            <div class="tab-content py-6">
+                {{!-- Profile Pane --}}
+                <div id="profile" class="tab-pane active">
+                    {{!-- Resources Starred and Added List --}} {{#if starredResources}}
+                    <div id="resources" class="col-md-12">
+                        <h5 class="mt-2">Starred Resources</h5>
+
+
+                        <table class="table table-sm table-hover table-striped">
+                            <tbody>
+                                {{#each starredResources}}
+                                <tr>
+                                    <td>
+                                        {{!-- From resources table --}}
+                                        <a href="{{Resource.resource_url}}" target="_blank">
+                                            {{Resource.resource_desc}}
+                                        </a>
+                                        <p>
+                                            <a href=' {{session_url}} '> {{session_name}} </a> |
+                                            <a href=' {{subject_url}} '> {{subject}} </a>
+                                            Session: {{SessionId}} Course: {{Course.course_name}}
+                                        </p>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                    {{/if}}
+                </div>
+                {{!-- /#profile --}}
+
+                {{!-- Courses Pane --}}
+                <div id="courses" class="tab-pane">
+                    <h3>All Courses</h3>
+
+                    <div class="row">
+                        {{!-- Courese Enrolled in List --}}
+                        <div id="enrollment" class="card-columns w-100">
+                            {{!-- From courses table --}}
+                            {{#each courses}}
+                            <div class="card p-3 text-white">
+                                <div class="card-header selectedCourse" href="{{course_url}}">
+                                    <small> {{course_day}} | {{course_time}} </small>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title"> {{course_name}} </h4>
+                                    <small class="card-text"> {{course_desc}} </small>
+                                </div>
+                                <div class="card-footer">
+                                    <a  class="btn btn-primary selectedCourse" id="{{id}}">Course Sessions</a>
+                                </div>
+                            </div>
+
+                            {{/each}}
+                        </div>
+                        {{!-- /#enrollment --}}
+                    </div>
+                    {{!-- /row --}}
+                </div>
+                {{!-- /#courses --}}
+                {{!--All Courses Pane --}}
+                <div id="allCourses" class="tab-pane">
+                    <h3>All Courses</h3>
+                    <div class="row">
+
+                        {{!-- Courese Enrolled in List --}}
+                        <div id="enrollment" class="col-md-10 card-deck">
+                            {{!-- From courses table --}}
+                            {{#each allCourses}}
+
+                            <div class="col-md-4 card text-white">
+                                <div class="card-header selectedCourse">
+                                    <small> {{course_time}} </small>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title"> {{course_name}} </h4>
+                                    <small class="card-text"> {{course_desc}} </small>
+                                </div>
+                                <div class="card-footer">
+                                    <a  class="btn btn-primary enrollCourse" id="{{id}}">Enroll</a>
+                                </div>
+                            </div>
+
+                            {{/each}}
+                        </div>
+                        {{!-- /#enrollment --}}
+                    </div>
+                    {{!-- /row --}}
+                </div>
+                {{!-- /#allcourses --}}
+
+                {{!-- Edit Pane --}}
+                <div class="tab-pane" id="edit">
+                    <form role="form">
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Course Name</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" id='inputCourseName' placeholder="name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Course Description</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" id='inputCourseDescription' placeholder="description">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Start Date</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="date" id='inputStartDate' placeholder="start date">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">End Date</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="date" id='inputEndDate' placeholder="end date">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Course Time</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="time" id='inputCourseTime' placeholder="time">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Session Frequency</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="input" id='inputCourseFreq' placeholder="How many times a week?">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                            <div class="col-lg-9">
+                                <input type="reset" class="btn btn-secondary" value="Cancel">
+                                <input type="button" class="btn btn-primary" id='submitNewCourse' value="Add Course">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    {{!-- /.row --}}
+</div>
+{{!-- /.container --}}
+
+ {{!-- <script>
+    $('#slide').on('click', function () {
+        $('#userInfo').toggleClass('active');
+    });
+</script> --}}
+
+{{/unless}}

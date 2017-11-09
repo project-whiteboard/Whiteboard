@@ -1,0 +1,153 @@
+
+
+<div class="container">
+    <div class="row my-2">
+
+        <div class="col-lg-8 order-lg-2">
+            {{!-- Pane tabs --}}
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/user/" data-target="#edit" data-toggle="tab" class="nav-link">New Course</a>
+                </li>
+            </ul>
+
+            <div class="tab-content py-4">
+                {{!-- Profile Pane --}}
+                <div id="profile" class="tab-pane active">
+
+                    <div class="row">
+                        {{!-- About --}}
+                        <div class="col-md-6">
+                            <h3>About</h3>
+                            <p> {{user.user_email}} </p>
+                            <p> {{user.user_desc}} </p>
+                        </div>
+
+                        {{!-- Courese Enrolled in List --}}
+                        <div id="enrollment" class="col-md-6">
+                            <h3>All Courses</h3>
+                            {{!-- From courses table --}}
+                            {{#each courses}}
+                            <a class="selectedCourse" id="{{id}}" href="{{course_url}}">
+                                <p id="{{id}}"> {{course_name}} </p>
+                            </a>
+                            <p> {{course_day}} | {{course_time}} </p>
+                            <p> {{course_desc}}</p>
+                            {{/each}}
+                        </div>
+                        {{!-- /#enrollment --}}
+                    </div>
+                    {{!-- /row --}}
+
+                    {{!-- Resources Starred and Added List --}}
+                    <div id="resources" class="col-md-12">
+                        <h5 class="mt-2">
+                            <span class="fa fa-clock-o ion-clock float-right"></span>Starred Resources</h5>
+                        <table class="table table-sm table-hover table-striped">
+                            <tbody>
+                                {{#each resource}}
+                                <tr>
+                                    <td>
+                                        {{!-- From resources table --}}
+                                        <a href="{{resource_url}}">
+                                            {{resource_title}}
+                                        </a>
+                                        <p>
+                                            <a href=' {{session_url}} '> {{session_name}} </a> |
+                                            <a href=' {{subject_url}} '> {{subject}} </a>
+                                        </p>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {{!-- /#profile --}}
+
+                {{!-- Messages Pane --}}
+                <div id="messages" class="tab-pane">
+                    <div class="alert alert-info alert-dismissable">
+                        <a class="panel-close close" data-dismiss="alert">×</a> This is an
+                        <strong>.alert</strong>. Use this to show important messages to the user.
+                    </div>
+
+                    <table class="table table-hover table-striped">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    {{!-- MESSAGE --}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                {{!-- /#messages --}}
+
+                {{!-- Edit Pane --}}
+                <div class="tab-pane" id="edit">
+                    <form role="form">
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Course Name</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" id='inputCourseName' placeholder="name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Course Description</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" id='inputCourseDescription' placeholder="description">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Start Date</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="date" id='inputStartDate' placeholder="Course Time">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">End Date</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="date" id='inputEndDate' placeholder="Course Time">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Course Time</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="time" id='inputCourseTime' placeholder="time">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Frequency</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="select" id='inputCourseFreq' placeholder="How many times a week?">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                            <div class="col-lg-9">
+                                <input type="reset" class="btn btn-secondary" value="Cancel">
+                                <input type="button" class="btn btn-primary" id='submitNewCourse' value="Add Course">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        {{!-- Main Pane --}}
+        <div id="userInfo" class="col-lg-4 order-lg-1 text-center">
+            <img src=" {{user.user_avatar}} " class="mx-auto img-fluid img-circle d-block" alt="avatar">
+            <h5 class="mb-3"> {{user.user_name}} </h5>
+        </div>
+        {{!-- /#userInfo --}}
+
+    </div>
+    {{!-- /.row --}}
+</div>
+{{!-- /.container --}}
