@@ -1,52 +1,16 @@
 $(function() {
 const currentURL = window.location.origin;
-let clientId = '51ec5a185abed21675e6';
-let clientSecret = '38e3b69bbddbd7d9bc89d44935615578f96ff4cd';
-let redirectUri = 'https://peaceful-garden-23465.herokuapp.com/new';
+let clientId = '7650c457e77cfe731cb1';
+let clientSecret = 'd110bc6c2898235d0c86d7a996c9cd273bb19f97';
+let redirectUri = 'https://localhost:3000/new';
 let usersLocalStorage = JSON.parse(localStorage.getItem('User'));
 console.log(usersLocalStorage);
+
 
 // onClick - profile sidebar toggle
 $('#slide').on('click', function () {
   $('#userInfo').toggleClass('active');
 });
-
-// Redirect - user to github to be authenticated
-function gitHubRedirect () {
-    window.location.replace('https://github.com/login/oauth/authorize?client_id=' + clientId + '&redirect_uri=' + redirectUri + '&state=1234');
-};
-// After redirect, posts the auth code, stores the returned access token, then gets the user data and posts it to our DB
-function userAuthentication() {
-  //parses the authentication code from the URL
-  function getAuthCode(url){
-    var error = url.match(/[&\?]error=([^&]+)/);
-    if (error) {
-        throw 'Error getting authorization code: ' + error[1];
-    }
-    return url.match(/[&\?]code=([\w\/\-]+)/)[1];
-  }
-  //defines the authentication code
-  let authCode = getAuthCode(window.location.href);
-  //posts to github to receive accesstoken
-  $.post('https://github.com/login/oauth/access_token?&client_id=' + clientId + '&client_secret=' + clientSecret + '&code=' + authCode, function(data) {
-    localStorage.setItem("accessToken", data);
-    //get request from github to get user data
-    $.get('https://api.github.com/user?' + data, function(res, err) {
-      let user = res;
-      //store user data locally
-      localStorage.setItem('User', JSON.stringify(res));
-      //stores user in database
-      $.post('/api/users', user, function(data) {
-        //if the response is a string (an existing user) redirect to that username profile page
-        if (typeof(data) === 'string'){
-          return window.location.href = currentURL + '/user/' + data;
-        }
-        //if new user then go to the new user's login page
-          window.location.href = currentURL + '/user/' + data.user_login;
-      });
-    });
-  });
-};
 
 // onClick - Initial log in button before authentication
 $('#login').on('click', function(event) {
@@ -60,7 +24,44 @@ $('#authenticatedUser').on('click', function(event) {
   userAuthentication();
 });
 
-  // onClick - When user submits a new course
+// Redirect - user to GitHub for authentication
+function gitHubRedirect () {
+  window.location.replace('https://github.com/login/oauth/authorize?client_id=' + clientId + '&redirect_uri=' + redirectUri + '&state=1234');
+};
+// After redirect, posts the auth code, stores the returned access token, then gets the user data and posts it to our DB
+function userAuthentication() {
+//parses the authentication code from the URL
+function getAuthCode(url){
+  var error = url.match(/[&\?]error=([^&]+)/);
+  if (error) {
+      throw 'Error getting authorization code: ' + error[1];
+  }
+  return url.match(/[&\?]code=([\w\/\-]+)/)[1];
+}
+//defines the authentication code
+let authCode = getAuthCode(window.location.href);
+//posts to github to receive accesstoken
+$.post('https://github.com/login/oauth/access_token?&client_id=' + clientId + '&client_secret=' + clientSecret + '&code=' + authCode, function(data) {
+  localStorage.setItem("accessToken", data);
+  //get request from github to get user data
+  $.get('https://api.github.com/user?' + data, function(res, err) {
+    let user = res;
+    //store user data locally
+    localStorage.setItem('User', JSON.stringify(res));
+    //stores user in database
+    $.post('/api/users', user, function(data) {
+      //if the response is a string (an existing user) redirect to that username profile page
+      if (typeof(data) === 'string'){
+        return window.location.href = currentURL + '/user/' + data;
+      }
+      //if new user then go to the new user's login page
+        window.location.href = currentURL + '/user/' + data.user_login;
+    });
+  });
+});
+};
+
+// onClick - When user submits a new course
 $('#submitNewCourse').on('click', function(e) {
   const weekInMiliseconds = 604800000;
   const dayInMiliseconds = 86400000;
@@ -112,6 +113,7 @@ $('#submitNewCourse').on('click', function(e) {
       }
     }
   }
+
   //Formats session dates before sending to server
   for (let i = 0; i < sessionDates.length; i++) {
     sessionDates[i] = (sessionDates[i]/1000);
@@ -137,7 +139,6 @@ $('#submitNewCourse').on('click', function(e) {
       }
     );
 });
-
 
  //When user clicks on one of their courses, redirects them to the sessions for that course
   $('.selectedCourse').on('click', ((e) => {
@@ -203,6 +204,7 @@ $('#submitNewCourse').on('click', function(e) {
       window.location.reload();
     }));
   });
+
 //when a user comments, posts it
   $('.commentSubmit').on('click', function(e) {
     e.preventDefault();
@@ -220,6 +222,7 @@ $('#submitNewCourse').on('click', function(e) {
     window.location.reload();
   }))
   });
+
 //when instructor submits session description
     $('.sessionDescSubmit').on('click', function(e) {
     e.preventDefault();
@@ -237,6 +240,7 @@ $('#submitNewCourse').on('click', function(e) {
         window.location.reload();
   }))
   });
+
 //When student enrolls in course
     $('.enrollCourse').on('click', function(e) {
       e.preventDefault();
@@ -252,6 +256,5 @@ $('#submitNewCourse').on('click', function(e) {
         window.location.reload();
       }))
     })
-
 
 });
