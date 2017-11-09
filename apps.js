@@ -12,7 +12,7 @@ let PORT = process.env.PORT || 3000;
 const app = express();
 
 // Express - CORS
-app.use(cors())
+app.use(cors);
 
 // Express - Static routes
 app.use("/public", express.static(__dirname + '/public'));
