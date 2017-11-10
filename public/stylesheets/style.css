@@ -12,11 +12,18 @@ body {
   position: center;
   font-weight: 300;
   margin: 0;
+  overflow-x: hidden;
   color: white;
 }
 
 a {
   color: #00859b;
+}
+
+header {
+  position: fixed;
+  text-align: center;
+  z-index: 999;
 }
 
 h2 {
@@ -99,7 +106,7 @@ p.small {
 }
 
 .hero-left {
-  background-color: red;
+  background-color: rgb(41, 24, 24);
   opacity: .5;
   height: 75vh;
   left: -50px;
@@ -254,7 +261,7 @@ p.small {
 }
 
 .top {
-  margin: 0;
+  margin: 30px;
   padding: 0;
   width: 100%;
 }

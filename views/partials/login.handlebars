@@ -1,64 +1,83 @@
-    {{!-- <section id="login-header">
-            <div class="row">
+<header>
+    <div class="top">
+        <h1 id="login-title" class="hidden">
+            <span id="logo"> Whiteboard </span>
+        </h1>
+    </div>
+</header>
 
-                <div class="hero-left">
-                    <div class="hero-basic">
-                        <h1>Student</h1>
-                    </div>
-                    {{!-- /.hero-basic --}}
-                    <div class="hero-expanded">
-                        <h1>Expanded</h1>
-                    </div>
-                    {{!-- /.hero-expanded --}}
-                </div>
-                {{!-- /.hero-left --}}
+<section id="login-header">
+    <div class="row">
 
-                <div class="hero-right">
-                    <div class="hero-basic">
-                        <h1>Instructor</h1>
-                    </div>
-                	{{!-- /.hero-basic --}}
-                    <div class="hero-expanded">
-                        <h1>Expanded</h1>
-                    </div>
-                    {{!-- /.hero-expanded --}}
-                </div>
-                {{!-- /.hero-right --}}
-
+        {{!-- Hero Left --}}
+        <div class="hero-left">
+            <div class="hero-basic">
+                <h1>Student</h1>
             </div>
-        	{{!-- /.row --}}
-    </section>
-    /#login-header --}}
+            {{!-- /.hero-basic --}}
+            <div class="hero-expanded">
+                <h1>Expanded</h1>
+                <br/>
+                <br/>
 
+                <div class="login-box animated fadeInUp">
+                    <div class="box-header">
+                        <h2>Login</h2>
+                    </div>
 
-<div class="container">
-		<div class="top">
-			<h1 id="login-title" class="hidden"><span id="logo"> Whiteboard </span></h1>
-		</div>
+                    {{#if message}}
+                    <h3> {{message}} </h3>
+                    <button class="btn btn-lg btn-primary btn-block" id='authenticatedUser'>Continue</button>
+                    {{/if}}
 
-		<br/><br/>
+                    {{#unless message}}
+                    <h2 class="form-signin-heading"></h2>
+                    <input id="login" type="image" src="public/images/GitHub_Logo.jpg">
+                    {{/unless}}
+                </div>
+            </div>
+            {{!-- /.hero-expanded --}}
+        </div>
+        {{!-- /.hero-left --}}
 
-		<div class="login-box animated fadeInUp">
-			<div class="box-header">
-				<h2>Login</h2>
-			</div>
+        {{!-- Hero Right --}}
+        <div class="hero-right">
+            <div class="hero-basic">
+                <h1>Instructor</h1>
+            </div>
+            {{!-- /.hero-basic --}}
+            <div class="hero-expanded">
+                <h1>Expanded</h1>
+                <br/>
+                <br/>
 
-			{{#if message}}
-	        <h3> {{message}} </h3>
-	        <button class="btn btn-lg btn-primary btn-block" id='authenticatedUser'>Continue</button>
-	        {{/if}}
+                <div class="login-box animated fadeInUp">
+                    <div class="box-header">
+                        <h2>Login</h2>
+                    </div>
 
-	        {{#unless message}}
-			<h2 class="form-signin-heading"></h2>
-	        <input id="login" type="image" src="public/images/GitHub_Logo.jpg">
-	      	</form>
-        	{{/unless}}
-		</div>
-</div>
+                    {{#if message}}
+                    <h3> {{message}} </h3>
+                    <button class="btn btn-lg btn-primary btn-block" id='authenticatedUser'>Continue</button>
+                    {{/if}}
+
+                    {{#unless message}}
+                    <h2 class="form-signin-heading"></h2>
+                    <input id="login" type="image" src="public/images/GitHub_Logo.jpg">
+                    {{/unless}}
+                </div>
+            </div>
+            {{!-- /.hero-expanded --}}
+        </div>
+        {{!-- /.hero-right --}}
+
+    </div>
+    {{!-- /.row --}}
+</section>
 
 <script>
-	$(document).ready(function () {
-    	$('#logo').addClass('animated fadeInDown');
-    	$("input:text:visible:first").focus();
-	});
- </script>
+    $(document).ready(function () {
+        $('#logo').addClass('animated fadeInDown');
+        $("input:text:visible:first").focus();
+    });
+</script>
