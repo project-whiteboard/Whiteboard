@@ -119,6 +119,7 @@
                     {{!-- /row --}}
                 </div>
                 {{!-- /#courses --}}
+
                 {{!--All Courses Pane --}}
                 <div id="allCourses" class="tab-pane">
                     <h3>All Courses</h3>
@@ -151,53 +152,67 @@
                 {{!-- /#allcourses --}}
 
                 {{!-- Edit Pane --}}
-                <div class="tab-pane" id="edit">
+                <div id="edit" class="tab-pane">
                     <form role="form">
+                        {{!-- Course Name --}}
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Course Name</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" id='inputCourseName' placeholder="name">
+                            <div class="col-lg-8">
+                                <input id='inputCourseName' class="form-control" type="text" placeholder="name">
                             </div>
                         </div>
+                        <br>
+                        {{!-- Course Desc --}}
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Course Description</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" id='inputCourseDescription' placeholder="description">
+                            <label class="col-lg-3 col-form-label form-control-label" for='inputCourseDesc'>Course Description</label>
+                            <div class="col-lg-8">
+                                <textarea id='inputCourseDesc' class="form-control" rows="3" type="text" placeholder="description"></textarea>
                             </div>
                         </div>
+                        <br>
+                        {{!-- Course Dates & Times --}}
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Start Date</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="date" id='inputStartDate' placeholder="start date">
-                            </div>
+                            {{!-- Dates --}}
+                            <label class="col-lg-3 col-form-label form-control-label">Course Dates</label>
+                                <div class="col-lg-3">
+                                    <div class="input group">
+                                        <small>start</small><input id='inputStartDate' class="form-control" type="date" placeholder="start  date">
+                                    </div>
+                                    <div class="input group">
+                                        <small>end</small><input id='inputEndDate' class="form-control" type="date" placeholder="end date">
+                                    </div>
+                                </div>
+                            {{!-- Times --}}
+                            <label class="col-lg-2 col-form-label form-control-label">Course Times</label>
+                                <div class="col-lg-3">
+                                    <div class="input group">
+                                        <small>start</small><input id='inputCourseTimeStart' class="form-control" type="time"  placeholder="start time">
+                                    </div>
+                                <div class="input group">
+                                        <small>end</small><input id='inputCourseTimeEnd' class="form-control" type="time" placeholder="end time">
+                                    </div>
+                                </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">End Date</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="date" id='inputEndDate' placeholder="end date">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Course Time</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="time" id='inputCourseTime' placeholder="time">
-                            </div>
-                        </div>
+                        <br>
+                        {{!-- Session Frequency --}}
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Session Frequency</label>
-                            <div class="col-lg-9">
+                            <div class="col-lg-8">
                                 <input class="form-control" type="input" id='inputCourseFreq' placeholder="How many times a week?">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label"></label>
-                            <div class="col-lg-9">
-                                <input type="reset" class="btn btn-secondary" value="Cancel">
-                                <input type="button" class="btn btn-primary" id='submitNewCourse' value="Add Course">
+                        <br>
+                        {{!-- Buttons --}}
+                        <div class="input-group row" style="float:right">
+                            <div class="col-lg-4">
+                                <button id='submitNewCourse' type="button" class="btn btn-primary">Add Course</button>
+                                <button type="reset" class="btn btn-secondary">Cancel</button>
                             </div>
                         </div>
                     </form>
+                    {{!-- /form --}}
                 </div>
+                {{!-- /#edit --}}
 
             </div>
         </div>
