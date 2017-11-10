@@ -1,4 +1,7 @@
+// Function - Basically window.onLoad
 $(function() {
+
+// Variables & Dependencies
 const currentURL = window.location.origin;
 let clientId = '7650c457e77cfe731cb1';
 let clientSecret = 'd110bc6c2898235d0c86d7a996c9cd273bb19f97';
@@ -6,6 +9,13 @@ let redirectUri = 'http://localhost:3000/new';
 let usersLocalStorage = JSON.parse(localStorage.getItem('User'));
 console.log(usersLocalStorage);
 
+// onHover - hero back-and-forth
+$('.hero-right').mouseenter(function () {
+  $('.hero-left').css('width', '25%');
+})
+$('.hero-right').mouseleave(function () {
+  $('.hero-left').css('width', '');
+})
 
 // onClick - profile sidebar toggle
 $('#slide').on('click', function () {
