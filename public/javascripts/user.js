@@ -51,7 +51,7 @@ function getAuthCode(url){
 //defines the authentication code
 let authCode = getAuthCode(window.location.href);
 //posts to github to receive accesstoken
-$.post('https://github.com/login/oauth/access_token?&client_id=' + clientId + '&client_secret=' + clientSecret + '&code=' + authCode, function(data) {
+$.post('https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token?&client_id=' + clientId + '&client_secret=' + clientSecret + '&code=' + authCode, function(data) {
   localStorage.setItem("accessToken", data);
   //get request from github to get user data
   $.get('https://api.github.com/user?' + data, function(res, err) {
