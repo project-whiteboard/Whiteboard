@@ -1,3 +1,7 @@
+
+
+/* Elements */
+
 body {
   height: 100vh;
   font: 14px, 'Roboto Slab', serif;
@@ -28,22 +32,14 @@ p.small {
   font-size: 0.8em;
 }
 
+
+/* Classes */
+
 .active {
   transition: all .3s ease-in-out;
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
-}
-
-#authenticatedUser {
-  background: url("../images/photo_bg.jpg") no-repeat center center fixed;
-  background-size: cover;
-  font-size: 16px;
-  position: center;
-  font-family: 'Roboto Slab', serif;
-  font-weight: 300;
-  margin: 0;
-  color: white;
 }
 
 .btn-primary {
@@ -140,41 +136,6 @@ p.small {
   visibility: visible;
 }
 
-#login {
-  margin: 0px;
-  margin-bottom: -6px;
-  border: 0;
-  color: white;
-  padding: 10px 0px 0px 0px;
-  text-transform: uppercase;
-  font-weight: 400;
-  font-size: 0.7em;
-  letter-spacing: 1px;
-  cursor: pointer;
-  height: 125px;
-  outline: none;
-}
-
-#login-header {
-  height: 75vh;
-  margin: -50px -50px 0 -50px;
-  overflow: hidden;
-  text-align: center;
-}
-
-#login-title {
-  font-family: 'Permanent Marker', cursive;
-  font-weight: 250;
-  font-size: 5em;
-  color: white;
-  text-shadow: 0px 0px 20px black;
-  margin: 0 auto;
-  padding-top: 0px;
-  text-align: center;
-  position: relative;
-  top: 0px;
-}
-
 .login-box {
   background-color: #dee0e0;
   max-width: 300px;
@@ -224,13 +185,6 @@ p.small {
   border-color: #665851;
   transition: 0.5s;
   color: #665851;
-}
-
-#logo {
-  animation: 1s ease-in-out 2s;
-  -webkit-animation: 1s ease-in-out 2s;
-  -moz-animation: 1s ease-in-out 2s;
-  -o-animation: 1s ease-in-out 2s;
 }
 
 .modal-header {
@@ -301,6 +255,62 @@ p.small {
   margin: 0;
   padding: 0;
   width: 100%;
+}
+
+
+/* IDs */
+
+#authenticatedUser {
+  background: url("../images/photo_bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+  font-size: 16px;
+  position: center;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300;
+  margin: 0;
+  color: white;
+}
+
+#login {
+  margin: 0px;
+  margin-bottom: -6px;
+  border: 0;
+  color: white;
+  padding: 10px 0px 0px 0px;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 0.7em;
+  letter-spacing: 1px;
+  cursor: pointer;
+  height: 125px;
+  outline: none;
+}
+
+#login-header {
+  height: 75vh;
+  margin: -50px -50px 0 -50px;
+  overflow: hidden;
+  text-align: center;
+}
+
+#login-title {
+  font-family: 'Permanent Marker', cursive;
+  font-weight: 250;
+  font-size: 5em;
+  color: white;
+  text-shadow: 0px 0px 20px black;
+  margin: 0 auto;
+  padding-top: 0px;
+  text-align: center;
+  position: relative;
+  top: 0px;
+}
+
+#logo {
+  animation: 1s ease-in-out 2s;
+  -webkit-animation: 1s ease-in-out 2s;
+  -moz-animation: 1s ease-in-out 2s;
+  -o-animation: 1s ease-in-out 2s;
 }
 
 #userAvatar {
@@ -382,7 +392,9 @@ p.small {
   visibility: visible;
 }
 
+
 /* Subject Colors */
+
 .javascript {
   background-color: yellow;
 }
@@ -391,7 +403,9 @@ p.small {
   background-color: orange;
 }
 
+
 /* Keyframes */
+
 @keyframes fadeInDown {
   from {
     opacity: 0;
