@@ -169,12 +169,12 @@
                                 <textarea id='inputCourseDesc' class="form-control" rows="3" type="text" placeholder="description"></textarea>
                             </div>
                         </div>
-                        <br>
+                        <hr>
                         {{!-- Course Dates & Times --}}
                         <div class="form-group row">
                             {{!-- Dates --}}
-                            <label class="col-lg-3 col-form-label form-control-label">Course Dates</label>
-                                <div class="col-lg-3">
+                            <label class="col-lg-2 col-form-label form-control-label">Course Dates</label>
+                                <div class="col-lg-2">
                                     <div class="input group">
                                         <small>start</small><input id='inputStartDate' class="form-control" type="date" placeholder="start  date">
                                     </div>
@@ -184,7 +184,7 @@
                                 </div>
                             {{!-- Times --}}
                             <label class="col-lg-2 col-form-label form-control-label">Course Times</label>
-                                <div class="col-lg-3">
+                                <div class="col-lg-2">
                                     <div class="input group">
                                         <small>start</small><input id='inputCourseTimeStart' class="form-control" type="time"  placeholder="start time">
                                     </div>
@@ -192,21 +192,21 @@
                                         <small>end</small><input id='inputCourseTimeEnd' class="form-control" type="time" placeholder="end time">
                                     </div>
                                 </div>
+                            {{!-- Frequency --}}
+                            <label class="col-lg-2 col-form-label form-control-label">Frequency</label>
+                                <div class="col-lg-2">
+                                    <div class="input group">
+                                        <small>sessions</small><input class="form-control" type="input" id='inputCourseFreq' placeholder="per week">
+                                    </div>
+                                </div>
                         </div>
-                        <br>
-                        {{!-- Session Frequency --}}
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Session Frequency</label>
-                            <div class="col-lg-8">
-                                <input class="form-control" type="input" id='inputCourseFreq' placeholder="How many times a week?">
-                            </div>
-                        </div>
+                        <hr>
                         <br>
                         {{!-- Buttons --}}
-                        <div class="input-group row" style="float:right">
+                        <div class="input-group row">
                             <div class="col-lg-4">
-                                <button id='submitNewCourse' type="button" class="btn btn-primary">Add Course</button>
-                                <button type="reset" class="btn btn-secondary">Cancel</button>
+                                <button id='submitNewCourse' class="btn btn-primary" type="button">Add Course</button>
+                                <button class="btn btn-secondary" type="reset" >Cancel</button>
                             </div>
                         </div>
                     </form>
