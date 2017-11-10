@@ -4,7 +4,8 @@ const db = require('./models');
 const express = require("express");
 const bodyParser = require("body-parser");
 const exphbs = require("express-handlebars");
-let routes = require('./routes/userRoutes');
+let apiRoutes = require('./routes/apiRoutes');
+let userRoutes = require('./routes/userRoutes');
 let PORT = process.env.PORT || 3000;
 
 
@@ -35,7 +36,8 @@ app.engine("handlebars", exphbs({
 }));
 
 // Express - Routes
-app.use(routes);
+app.use(apiRoutes);
+app.use(userRoutes);
 
 // Sequelize - Set database and keys
 db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0', {raw: true}).
