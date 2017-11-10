@@ -1,14 +1,15 @@
-# Project2
+# Whiteboard <img height="100px" src="public/images/logo.png">
 ### BootcampSpot Dynamic Syllabus
 “A better spot for bootcamp”
 
 |      | Table of Contents |
 | ---- | ----------------- |
 | I.   | [Proposal](#proposal) |
-| II.  | [Tools](#tools) |
-| III. | [File Tree](#filetree) |
-| IV.  | [Contributions](#contributionpolicy) |
-| V.   |  |
+| II.  | [Team Members](#team) |
+| III. | [Tools](#tools) |
+| IV.  | [File Tree](#filetree) |
+| V.  | [Contributions](#contributionpolicy) |
+
 
 <br>
 <hr>
@@ -23,6 +24,20 @@ BootcampSpot is a hollow and two-dimensional tool as it exists, but one which we
 
 ### Fix
 Consolidate student and instructor interaction more centrally to BootcampSpot by extending the functionality of the ‘Sessions’ syllabus. To achieve this we will give the instructor/TAs greater backend or ‘admin’ options toward customizing the syllabus and session specific ‘card’ to enable students to not only log their attendance, but interact with the card dynamically. This can be from posting lesson prep-work and/or resources, to having the students be able to rate that resource and/or post their own resources as they pertain to that lesson. Other things, from a “Raise Hand” button that would alert a TA in real-time as to the student's question, while still enabling instruction to progress, to the hosting of the recorded lesson stream, to the monitoring of student engagement in the lesson via a “page focus” script,  are actively being explored as well.
+
+<br>
+<hr>
+
+## Team <a name='team'></a>
+
+### Jennifer Reilly
+- Graphic & UI Design
+### Alex Pugh
+- Front-end Development
+### Tom Dolphin
+- Front-end Development
+### Cody Crozier
+- Back-end Development
 
 <br>
 <hr>
