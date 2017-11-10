@@ -9,6 +9,7 @@
 *.userosscache
 *.sln.docstates
 config/
+config.json
 partials_test/
 desktop.ini
 
