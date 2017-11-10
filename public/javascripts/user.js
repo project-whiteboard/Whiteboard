@@ -76,15 +76,12 @@ $('#submitNewCourse').on('click', function(e) {
   const weekInMiliseconds = 604800000;
   const dayInMiliseconds = 86400000;
   //All dates in unix (ms)
-  let startDate = moment($('#inputStartDate').val() + " " + $('#inputCourseTime').val()).valueOf();
-
-  let endDate = moment($('#inputEndDate').val() + " " + $('#inputCourseTime').val()).valueOf();
+  let startDate = moment($('#inputStartDate').val()).valueOf();
+  let endDate = moment($('#inputEndDate').val()).valueOf();
   let courseLength = endDate - startDate;
   let numberOfWeeks = courseLength/weekInMiliseconds;
-  console.log('Number of weeks: ' + numberOfWeeks);
 
   let sessionFrequency = $('#inputCourseFreq').val();
-
   let sessionDates = [];
   //MWF Class option class starts on monday
 
@@ -127,14 +124,15 @@ $('#submitNewCourse').on('click', function(e) {
   //Formats session dates before sending to server
   for (let i = 0; i < sessionDates.length; i++) {
     sessionDates[i] = (sessionDates[i]/1000);
-    sessionDates[i] = moment.unix(sessionDates[i]).format('MM/DD/YY h:mmA')
+    sessionDates[i] = moment.unix(sessionDates[i]).format('MM/DD/YY')
   }
     e.preventDefault();
     let newCourse = {
       instructor: usersLocalStorage.login,
       name: $('#inputCourseName').val(),
       description: $('#inputCourseDescription').val(),
-      time: $('#inputCourseTime').val(),
+      startTime: $('#inputCourseTimeStart').val(),
+      endTime: $('#inputCourseTimeEnd').val(),
       sessions: sessionDates
     };
 
@@ -145,9 +143,9 @@ $('#submitNewCourse').on('click', function(e) {
     }).then(
       //after response, sends user to profile page to see all courses
       function(data) {
-        window.location.href = currentURL + '/user/' + usersLocalStorage.login;
-      }
-    );
+        // window.location.href = currentURL + '/user/' + usersLocalStorage.login;
+        window.location.reload();
+      });
 });
 
  //When user clicks on one of their courses, redirects them to the sessions for that course
@@ -177,7 +175,6 @@ $('#submitNewCourse').on('click', function(e) {
       console.log(data);
       window.location.reload();
     }));
-
   });
 //On click when a user submits a rating
   $('.ratingSubmit').on('click', function(e) {

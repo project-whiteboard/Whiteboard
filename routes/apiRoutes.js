@@ -39,7 +39,8 @@ router.post('/api/courses', function(req, res) {
     course_instructor: req.body.instructor,
     course_name:req.body.name,
     course_desc: req.body.description,
-    course_time: req.body.time,
+    course_time_start: req.body.startTime,
+    course_time_end: req.body.endTime
   })
   .then((result) => {
     //finds course ID
