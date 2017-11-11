@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "scrub",
-    "database": "project2",
+    "database": "whiteboard_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
