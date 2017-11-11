@@ -54,8 +54,7 @@ router.get('/user/:userName/courses/:courseId/sessions/', function(req, res) {
     })
     .then((sessions) => {
       hbsObject.course_name = sessions[0].Course.course_name;
-      hbsObject.sessions = sessions;
-      //if user has already given a rating for the session, they cannot rate again
+      hbsObject.sessions = sessions;      //if user has already given a rating for the session, they cannot rate again
       for (let i = 0; i < sessions.length; i++) {
         for (let j=0; j< sessions[i].Ratings.length; j++) {
           if (sessions[i].Ratings[j] === hbsObject.userId) {
