@@ -222,7 +222,7 @@ $('#submitNewCourse').on('click', function(e) {
     let sessionId = $(this).data("sessionId");
     let newStarredResource = {
       sessionId,
-      courseId: $('.courseId').attr('data-id'),
+      courseId: $('.courseID').attr('data-id'),
       userName: usersLocalStorage.login,
       resourceId,
     }
