@@ -34,6 +34,12 @@ $('#authenticatedUser').on('click', function(event) {
   userAuthentication();
 });
 
+
+$('.inputCourseFreq').on('click', function() {
+  $('.inputCourseFreq').removeClass('active');
+  $(this).addClass('active');
+});
+
 // Redirect - user to GitHub for authentication
 function gitHubRedirect () {
   window.location.replace('https://github.com/login/oauth/authorize?client_id=' + clientId + '&redirect_uri=' + redirectUri + '&state=1234');
@@ -81,11 +87,11 @@ $('#submitNewCourse').on('click', function(e) {
   let courseLength = endDate - startDate;
   let numberOfWeeks = courseLength/weekInMiliseconds;
 
-  let sessionFrequency = $('#inputCourseFreq').val();
+  let sessionFrequency = $('#freqOptions').find('.active').val();
   let sessionDates = [];
   //MWF Class option class starts on monday
 
-  if ($('#inputCourseFreq').val() === '3') {
+  if (sessionFrequency === '3') {
     //Class every 2 days m/w/f
     for (let i =0; i < numberOfWeeks; i++) {
       let sessionInterval = dayInMiliseconds * 2;
@@ -102,9 +108,25 @@ $('#submitNewCourse').on('click', function(e) {
       }
     }
   }
+//class on Tuesday/Thursday
+  if (sessionFrequency === '2') {
+    for (let i =0; i < numberOfWeeks; i++) {
+      let sessionInterval = dayInMiliseconds * 2;
+      for (let j = 0; j < sessionFrequency; j ++) {
+        sessionDates.push(startDate);
 
+        if (sessionDates.length > 0 && sessionDates.length % 2 == 0) {
+          sessionInterval = dayInMiliseconds * 5;
+          startDate += sessionInterval;
+        }
+        else {
+          startDate += sessionInterval;
+        }
+      }
+    }
+  }
   //Class every weekday
-  if ($('#inputCourseFreq').val() === '5') {
+  if (sessionFrequency === '5') {
       for (let i =0; i < numberOfWeeks; i++) {
         let sessionInterval = dayInMiliseconds;
       for (let j = 0; j < sessionFrequency; j ++) {
@@ -135,7 +157,6 @@ $('#submitNewCourse').on('click', function(e) {
       endTime: $('#inputCourseTimeEnd').val(),
       sessions: sessionDates
     };
-
     //posts new course to server
     $.ajax("/api/courses", {
       type: "POST",

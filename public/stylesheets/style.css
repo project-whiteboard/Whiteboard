@@ -158,6 +158,14 @@ section {
   visibility: visible;
 }
 
+.inputCourseFreq {
+  border: 1px solid white !important;
+}
+
+.inputCourseFreq:focus {
+  outline: 0;
+}
+
 .login-box {
   background-color: #dee0e0;
   max-width: 300px;
@@ -290,6 +298,12 @@ section {
   font-family: 'Roboto Slab', serif;
   font-weight: 300;
   margin: 0;
+  color: white;
+}
+
+#freqOptions > button.active {
+  outline: 0;
+  background-color: #18a7b7;
   color: white;
 }
 
