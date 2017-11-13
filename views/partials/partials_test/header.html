@@ -3,72 +3,86 @@
 
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv='Content-Security-Policy' content="img-src 'self' *;">
-  <title>Header</title>
+    <meta charset="UTF-8">
+    <meta http-equiv='Content-Security-Policy' content="img-src 'self' *;">
+    <title>Header</title>
 
-  <!-- Bootstrap 4 Beta CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-    crossorigin="anonymous">
-  <!-- FontAwesome 4.7.0 CSS -->
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-    crossorigin="anonymous">
-  <!-- Fonts -->
-  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Permanent+Marker:400,100,300,700' rel='stylesheet' type='text/css'>
-  <!-- Custom CSS -->
-  <link rel='stylesheet' href='../../../public/stylesheets/style.css'>
-
-  <!-- jQuery 3.1.1 -->
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
-  <!-- Bootstrap Ajax -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-    crossorigin="anonymous"></script>
-  <!-- Bootstrap 4 JS -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-    crossorigin="anonymous"></script>
-  <!-- Moment JS -->
-  <script src= "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
-  <!-- Local Scripts -->
-  <script src='../../../public/javascripts/user.js'></script>
+    <!-- Bootstrap 4 Beta CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+    <!-- FontAwesome 4.7.0 CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Permanent+Marker:400,100,300,700' rel='stylesheet'
+        type='text/css'>
+    <!-- Custom CSS -->
+    <link rel='stylesheet' href='../../../public/stylesheets/style.css'>
 
 </head>
 
 <body>
-<div class="container">
+    <header>
+        <div class="top">
+            <h1 id="login-title">
+                <span id="logo"> Whiteboard </span>
+            </h1>
+        </div>
+    </header>
     <section id="login-header">
-            <div class="row">
+        <div class="row">
 
-                <div class="hero-left">
-                    <div class="hero-basic">
-                        <h1>Student</h1>
+            <div class="hero-left">
+                <div class="hero-basic">
+                    <h1>Student</h1>
+                    <br>
+                    <div class="row">
+                    <div class="col-lg-6">
+                    <p>Sign-in to view courses, classes, and assignments.</p>
                     </div>
-                    <!-- /.hero-basic -->
-                    <div class="hero-expanded">
-                        <h1>Expanded</h1>
+                    <div class="col-lg-6">
+                    <p>Track syllabus homework, comment on lessons, share and save learning resources.</p>
                     </div>
-                    <!-- /.hero-expanded -->
+                    </div>
                 </div>
-                <!-- /.hero-left -->
-
-                <div class="hero-right">
-                    <div class="hero-basic">
-                        <h1>Instructor</h1>
-                    </div>
-                    <!-- /.hero-basic -->
-                    <div class="hero-expanded">
-                        <h1>Expanded</h1>
-                    </div>
-                    <!-- /.hero-expanded -->
+                <!-- /.hero-basic -->
+                <div class="hero-expanded">
+                    <h1>Expanded</h1>
                 </div>
-                <!-- /.hero-right -->
-
+                <!-- /.hero-expanded -->
             </div>
+            <!-- /.hero-left -->
+
+            <div class="hero-right">
+                <div class="hero-basic">
+                    <h1>Instructor</h1>
+                </div>
+                <!-- /.hero-basic -->
+                <div class="hero-expanded">
+                    <h1>Expanded</h1>
+                </div>
+                <!-- /.hero-expanded -->
+            </div>
+            <!-- /.hero-right -->
+
+        </div>
         <!-- /.row-->
     </section>
     <!-- /#login-header -->
-</div>
 
+    <!-- jQuery 3.1.1 -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap Ajax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap 4 JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+    <!-- Moment JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+    <!-- Local Scripts -->
+    <script src='../../../public/javascripts/user.js'></script>
 </body>
 
 </html>

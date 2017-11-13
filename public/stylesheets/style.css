@@ -1,9 +1,17 @@
 
+/* Root */
+
+:root {
+  --color-red: rgb(199, 73, 35);
+  --color-lblue: rgb(0, 130, 153);
+
+}
+
 
 /* Elements */
 
 body {
-  height: 100vh;
+  height: 100%;
   font: 14px, 'Roboto Slab', serif;
   width: 100%;
   padding: 0;
@@ -17,12 +25,13 @@ body {
 }
 
 a {
-  color: #00859b;
+  color: var(--color-lblue);
 }
 
 header {
-  position: fixed;
+  position: absolute;
   text-align: center;
+  width: 100vw;
   z-index: 999;
 }
 
@@ -39,6 +48,9 @@ p.small {
   font-size: 0.8em;
 }
 
+section {
+  height: 100vh;
+}
 
 /* Classes */
 
@@ -105,19 +117,20 @@ p.small {
   -o-animation-name: fadeInUp;
 }
 
+.hero-basic {
+  padding-top: 25%;
+  opacity: 1;
+}
+
 .hero-left {
-  background-color: rgb(41, 24, 24);
-  opacity: .5;
-  height: 75vh;
+  background-color: rgba(199, 71, 35, 0.5);
   left: -50px;
   width: 50%;
   transition: all 1s ease-in-out;
 }
 
 .hero-right {
-  background-color: blue;
-  opacity: .5;
-  height: 75vh;
+  background-color: rgba(0, 130, 153, 0.5);
   right: -50px;
   width: 50%;
   transition: all 1s ease-in-out;
@@ -197,11 +210,11 @@ p.small {
 }
 
 .modal-header {
-  background-color: #00859b;
+  background-color: var(--color-lblue);
 }
 
 .modal-footer {
-  background-color: #c74923;
+  background-color: var(--color-red);
 }
 
 .nav-tabs {
@@ -296,7 +309,7 @@ p.small {
 }
 
 #login-header {
-  height: 75vh;
+  height: 100vh;
   margin: -50px -50px 0 -50px;
   overflow: hidden;
   text-align: center;
