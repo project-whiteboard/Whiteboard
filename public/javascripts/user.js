@@ -12,9 +12,11 @@ console.log(usersLocalStorage);
 // onHover - hero back-and-forth
 $('.hero-right').mouseenter(function () {
   $('.hero-left').css('width', '25%');
+  $('.card-deck').css('visibility', 'hidden');
 })
 $('.hero-right').mouseleave(function () {
   $('.hero-left').css('width', '');
+  $('.card-deck').css('visibility', '');
 })
 
 // onClick - profile sidebar toggle
