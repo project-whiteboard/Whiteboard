@@ -61,7 +61,8 @@
             <div class="tab-content py-6">
                 {{!-- Profile Pane --}}
                 <div id="profile" class="tab-pane active">
-                    {{!-- Resources Starred and Added List --}} {{#if starredResources}}
+                    {{!-- Resources Starred and Added List --}} 
+                    {{#if starredResources}}
                     <div id="resources" class="col-md-12">
                         <h5 class="mt-2">Starred Resources</h5>
                         <table class="table table-sm table-hover table-striped">
@@ -85,6 +86,28 @@
                         </table>
                     </div>
                     {{/if}}
+                  {{#if comments}}
+                    <div id="resources" class="col-md-12">
+                        <h5 class="mt-2">Your Comments</h5>
+                  <table class="table table-sm table-hover table-striped">
+                    <tbody>
+                    {{#each comments}}
+                      <tr>
+                        <td>
+                          <img src={{user_avatar}} class="commentImg" />
+                          <span class="comment">{{comment_text}} </span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="commenterName">By: {{user_login}} Posted at: {{createdAt}}</span>
+                        </td>
+                      </tr>
+                {{/each}}
+                    </tbody>
+                  </table>
+                    </div>
+                {{/if}}
                 </div>
                 {{!-- /#profile --}}
 

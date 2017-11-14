@@ -186,7 +186,7 @@
                   <br>
 
                   <div class="row">
-                    {{#unless Ratings}}
+                    {{#unless rated}}
                     <form>
                       <div class="form-group">
                         <label for="resourceText">Rate this session</label>
@@ -219,8 +219,8 @@
                       </div>
                     </form>
                     {{/unless}}
-                    {{#if Ratings}}
-                    <p> You rated this session a {{session_rating}}.
+                    {{#if rated}}
+                    <p> You rated this session a {{userRating}}.
                     {{/if}}
                   </div>
                   <div class='row'>
