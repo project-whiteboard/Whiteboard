@@ -61,11 +61,10 @@
             <div class="tab-content py-6">
                 {{!-- Profile Pane --}}
                 <div id="profile" class="tab-pane active">
-                    {{!-- Resources Starred and Added List --}} {{#if starredResources}}
+                    {{!-- Resources Starred and Added List --}} 
+                    {{#if starredResources}}
                     <div id="resources" class="col-md-12">
                         <h5 class="mt-2">Starred Resources</h5>
-
-
                         <table class="table table-sm table-hover table-striped">
                             <tbody>
                                 {{#each starredResources}}
@@ -87,6 +86,28 @@
                         </table>
                     </div>
                     {{/if}}
+                  {{#if comments}}
+                    <div id="resources" class="col-md-12">
+                        <h5 class="mt-2">Your Comments</h5>
+                  <table class="table table-sm table-hover table-striped">
+                    <tbody>
+                    {{#each comments}}
+                      <tr>
+                        <td>
+                          <img src={{user_avatar}} class="commentImg" />
+                          <span class="comment">{{comment_text}} </span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="commenterName">By: {{user_login}} Posted at: {{createdAt}}</span>
+                        </td>
+                      </tr>
+                {{/each}}
+                    </tbody>
+                  </table>
+                    </div>
+                {{/if}}
                 </div>
                 {{!-- /#profile --}}
 
@@ -101,7 +122,7 @@
                             {{#each courses}}
                             <div class="card p-3 text-white">
                                 <div class="card-header selectedCourse" href="{{course_url}}">
-                                    <small> {{course_day}} | {{course_time}} </small>
+                                    <small> {{course_time_start}} - {{course_time_end}} </small>
                                 </div>
                                 <div class="card-body">
                                     <h4 class="card-title"> {{course_name}} </h4>
@@ -132,7 +153,7 @@
 
                             <div class="col-md-4 card text-white">
                                 <div class="card-header selectedCourse">
-                                    <small> {{course_time}} </small>
+                                    <small> {{course_time_start}} </small>
                                 </div>
                                 <div class="card-body">
                                     <h4 class="card-title"> {{course_name}} </h4>
@@ -196,7 +217,11 @@
                             <label class="col-lg-2 col-form-label form-control-label">Frequency</label>
                                 <div class="col-lg-2">
                                     <div class="input group">
-                                        <small>sessions</small><input class="form-control" type="input" id='inputCourseFreq' placeholder="per week">
+                                          <div class="list-group" id='freqOptions'>
+                                            <button type="button" value='3' class="list-group-item list-group-item-action inputCourseFreq">M/W/F</button>
+                                            <button type="button" value='2' class="list-group-item list-group-item-action inputCourseFreq">Tu/Th</button>
+                                            <button type="button" value='5' class="list-group-item list-group-item-action inputCourseFreq">M/Tu/W/Th/F</button>
+                                          </div>
                                     </div>
                                 </div>
                         </div>

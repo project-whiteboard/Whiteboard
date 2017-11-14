@@ -53,16 +53,24 @@ router.get('/user/:userName/courses/:courseId/sessions/', function(req, res) {
       ]})
     })
     .then((sessions) => {
-      hbsObject.course_name = sessions[0].Course.course_name;
-      hbsObject.sessions = sessions;      //if user has already given a rating for the session, they cannot rate again
+      hbsObject.course = sessions[0].Course.dataValues;
+      hbsObject.sessions = sessions;
+      console.log(sessions[1].Ratings[0].dataValues.UserId);
+      //if user has already given a rating for the session, they cannot rate again
       for (let i = 0; i < sessions.length; i++) {
+        sessions[i].course = sessions[i].Course.dataValues;
         for (let j=0; j< sessions[i].Ratings.length; j++) {
-          if (sessions[i].Ratings[j] === hbsObject.userId) {
-            sessions[i].Ratings[j] === [];
+          if (sessions[i].Ratings[j].dataValues.UserId === hbsObject.userId) {
+            hbsObject.sessions[i].userRating = sessions[i].Ratings[j].dataValues.rating;
+            hbsObject.sessions[i].rated = true;
           }
         }
+      }      if (hbsObject.instructor === true) {
+        res.render('../views/partials/session_card_instructor.handlebars', hbsObject)
       }
-      res.render('../views/partials/session_card.handlebars', hbsObject)
+      else {
+        res.render('../views/partials/session_card_student.handlebars', hbsObject)
+      }
     })
 });
 
@@ -132,7 +140,7 @@ router.get('/user/:username', function(req, res, next) {
     })
     .then((allCourses) => {
       hbsObject.allCourses = allCourses;
-      res.render('../views/partials/profileAdmin.handlebars', hbsObject)
+        res.render('../views/partials/profileAdmin.handlebars', hbsObject)
     })
   .catch(next);
 });
